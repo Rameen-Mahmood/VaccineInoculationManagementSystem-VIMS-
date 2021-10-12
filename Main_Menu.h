@@ -36,7 +36,6 @@ class Present_Menu
   string preferred_day;
   bool eligible=false;
   bool registered=false;
-  
 
   public:
   Present_Menu(){};
@@ -80,8 +79,16 @@ class Present_Menu
   }
   else if ((selection == 4) && (registered == false))
   {
-    cout<<"You are not registered for the vaccine, hence you cannot schedule an appointment for the vaccine!"<<endl<<endl;
-    Third_Selection();
+    if (eligible == false)
+    {
+      cout<<"You are not eligibile for the vaccine, hence you cannot schedule an appointment for the vaccine!"<<endl<<endl;
+      Second_Selection();
+    }
+    else
+    {
+      cout<<"You are not registered for the vaccine, hence you cannot schedule an appointment for the vaccine!"<<endl<<endl;
+      Third_Selection();
+    }
   }
   else if ((selection == 5) && (registered == true))
   {
@@ -89,8 +96,16 @@ class Present_Menu
   }
    else if ((selection == 5) && (registered == false))
   {
-    cout<<"You are not eligible for the vaccine, hence no user record found!"<<endl<<endl;
-    Second_Selection();
+    if (eligible == false)
+    {
+      cout<<"You are not eligible for the vaccine, hence no user record found!"<<endl<<endl;
+      Second_Selection();
+    }
+    else
+    {
+    cout<<"You are not registered for the vaccine, hence no user record found!"<<endl<<endl;
+    Third_Selection();
+    }
   }
 }
 
@@ -107,7 +122,7 @@ void First_Selection()
 
 void Second_Selection()
 {
-  cout<<"Please enter your age"<<endl;
+  cout<<"Please enter your age."<<endl;
   cin>>age;
   cout<<"Have you been vaccinated before? (Yes/No)"<<endl;
   cin>>vaccination_status;
@@ -135,11 +150,11 @@ void Second_Selection()
   void Third_Selection()
   {
     cout<<setw(35)<<"~VACCINE REGISTRATION~"<<endl;
-    cout<<"Please enter your first name"<<endl;
+    cout<<"Please enter your first name."<<endl;
     cin>>fname;
-    cout<<"Please enter your last name"<<endl;
+    cout<<"Please enter your last name."<<endl;
     cin>>lname;
-    cout<<"Please enter your ID number"<<endl;
+    cout<<"Please enter your ID number [a series of integers]"<<endl;
     cin>>ID;
     cout<<"Please enter your gender (Male: M, Female: F)"<<endl;
     cin>>sex;
@@ -153,7 +168,7 @@ void Second_Selection()
     
     Vaccination_Data::GetInstance()->addIndividual(individual);
     
-    Vaccination_Data::GetInstance()->print_peoples_info();
+    // Vaccination_Data::GetInstance()->print_peoples_info();
 
     registered=true;
     DisplayMenu();
@@ -167,6 +182,8 @@ void Second_Selection()
     cin>>preferred_day;
 
     Appointment_scheduling::GetInstance()->read_appointment_data(preferred_day);
+
+    DisplayMenu();
   }
 
   void Fifth_Selection()
@@ -174,11 +191,6 @@ void Second_Selection()
     cout<<"Please enter your username"<<endl;
     cin>>login_username;
     ApplicationManager AM;
-
-    AM.confirm_username(login_username);
-    
-    
-    // AM.DisplayUserInformation();
   
     if (AM.confirm_username(login_username) == true)
     {
@@ -190,6 +202,8 @@ void Second_Selection()
     {
       AM.DisplayUserInformation();
     }
+
+    DisplayMenu();
     
   }
 

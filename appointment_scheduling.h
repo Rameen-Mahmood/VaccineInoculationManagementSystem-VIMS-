@@ -9,16 +9,17 @@ using namespace std;
 class Appointment_scheduling 
 {
   private:
-   
+
+    int num_of_entries=31;
+    int index; 
+    string confirmed_time;
+     
     string preferred_day;
-    string *AppointmentID = new string[30];
-    string *AppointmentDay = new string[30];
-    string *AppointmentTime1 = new string[30];
-    string *AppointmentTime2 = new string [30];
-    // string AppointmentID[30]; 
-    // string AppointmentDay[30];
-    // string AppointmentTime1[30];
-    // string AppointmentTime2[30];
+    string *AppointmentID = new string[num_of_entries];
+    string *AppointmentDay = new string[num_of_entries];
+    string *AppointmentTime1 = new string[num_of_entries];
+    string *AppointmentTime2 = new string [num_of_entries];
+    
   
     static Appointment_scheduling *appts;
    
@@ -39,16 +40,19 @@ class Appointment_scheduling
 
   inline string GetAppointmentDay()
   {
-    return preferred_day;
+    return AppointmentDay[index];
   }
   inline string GetAppointmentTime()
   {
-    return preferred_hour;
+    return confirmed_time;
+  }
+  inline string GetAppointmentID()
+  {
+    return AppointmentID[index];
   }
 
   void read_appointment_data(string preferred_day)
 {
-  string confirmed_time;
   ifstream read_file;
   read_file.open("appointments.csv");
   // check for possible errors
@@ -94,16 +98,18 @@ class Appointment_scheduling
    
     if ((preferred_hour==AppointmentTime1[y]) && (preferred_day == AppointmentDay[y]))
     {
-      confirmed_time = AppointmentTime1[y];
+      index=y;
+      confirmed_time=AppointmentTime1[y];
       AppointmentTime1[y]="";
-      cout<<"Your appointment for November " <<AppointmentDay[y]<<", 2021 at " << confirmed_time <<" hrs "<<" is now confirmed."<<endl;
+      cout<<"Your appointment for November " <<AppointmentDay[y]<<", 2021 at " << confirmed_time <<"hrs "<<"is now confirmed."<<endl;
     }
     else if ((preferred_hour==AppointmentTime2[y]) &&(preferred_day == AppointmentDay[y]))
     {
-      confirmed_time = AppointmentTime2[y];
+      index=y;
+      confirmed_time=AppointmentTime2[y];
       AppointmentTime2[y]="";
       AppointmentTime2[y]="";
-      cout<<"Your appointment for November " <<AppointmentDay[y]<<", 2021 at " << confirmed_time <<" hrs "<<" is now confirmed."<<endl;
+      cout<<"Your appointment for November " <<AppointmentDay[y]<<", 2021 at " << confirmed_time <<"hrs "<<"is now confirmed."<<endl;
     }
     
     write_file << AppointmentID[y]<< "," <<AppointmentDay[y]<<","<<AppointmentTime1[y]<< ","<<AppointmentTime2[y]<<endl;

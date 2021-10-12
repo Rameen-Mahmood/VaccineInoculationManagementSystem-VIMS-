@@ -81,17 +81,17 @@ class Individual
 class Vaccination_Data
 {
   private:
-    int SIZE = 223;
+    int number_of_regions = 223;
    // queue <Individual> peopleToVaccinate;
     //string *location;
-    string *location = new string[SIZE];
-    string *vaccine1 = new string[SIZE]; //number of regions are 223
-    string *vaccine2 = new string[SIZE];
-    string *vaccine3 = new string[SIZE];
-    string *vaccine4 = new string[SIZE];
-    string *vaccine5 = new string[SIZE];
-    string *vaccine6 = new string[SIZE];
-    string *vaccine7 = new string[SIZE];
+    string *location = new string[number_of_regions];
+    string *vaccine1 = new string[number_of_regions]; //number of regions are 223
+    string *vaccine2 = new string[number_of_regions];
+    string *vaccine3 = new string[number_of_regions];
+    string *vaccine4 = new string[number_of_regions];
+    string *vaccine5 = new string[number_of_regions];
+    string *vaccine6 = new string[number_of_regions];
+    string *vaccine7 = new string[number_of_regions];
     int number_of_people=0;
     static Vaccination_Data *v_data; //initialize outside of class
     deque <Individual> peopleToVaccinate;
@@ -176,7 +176,15 @@ class Vaccination_Data
           cout<<"Vaccinated: "<<peopleToVaccinate[i].vaccination_status<<endl;
           cout<<"Username: "<<peopleToVaccinate[i].username<<endl;
           cout<<"Password: "<<peopleToVaccinate[i].password<<endl;
-          cout<<"Appointment date is scheduled at: November "<<Appointment_scheduling::GetInstance()->GetAppointmentDay()<<", 2021 at "<<Appointment_scheduling::GetInstance()->GetAppointmentTime()<<endl;
+          if (Appointment_scheduling::GetInstance()->GetAppointmentID() != "")
+          {
+          cout<<"Appointment date is scheduled at: November "<<Appointment_scheduling::GetInstance()->GetAppointmentDay()<<", 2021 at 8"<<Appointment_scheduling::GetInstance()->GetAppointmentTime()<<":00 hrs"<<endl;
+          cout<<"Appointment ID: "<<Appointment_scheduling::GetInstance()->GetAppointmentID()<<endl;
+          }
+          else if (Appointment_scheduling::GetInstance()->GetAppointmentID() == "")
+          {
+            cout<<"Appointment not scheduled as of yet. "<<endl;
+          }
       }
         cout<<endl;
     }

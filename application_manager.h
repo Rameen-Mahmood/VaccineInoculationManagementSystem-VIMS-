@@ -26,19 +26,21 @@ class ApplicationManager //manages logic of application
       int i=0;
       while(i < people.size())
       {
-        if (people[i].username != login_username)
+        while (people[i].username != login_username)
         {
-          do 
-          {
-         cout<<"Username does not match, please enter again"<<endl;
+          cout<<login_username<<endl;
+          
+          cout<<"Username does not match, please enter again"<<endl;
           cin>>login_username;
-          } while (people[i].username != username);
+      
           exists=false;
         }
         
+        exists = true;
+      
         i++;
       }
-      exists=true;
+     
       return exists;
     }
 
