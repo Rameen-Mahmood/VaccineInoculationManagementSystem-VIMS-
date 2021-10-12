@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <deque>
+#include "appointment_scheduling.h"
 
 using namespace std;
 
@@ -29,7 +30,9 @@ class Individual
     int age;
     char sex;
     string vaccination_status;
-    // deque <Individual> peopleToVaccinate;
+    
+    int AppointmentTime;
+    int AppointmentDay;
   
   public:
   //queue <Individual> myq;
@@ -46,27 +49,27 @@ class Individual
       this->vaccination_status=vaccination_status;
     };
     //getter functions
-    string getFirstName() const
+    inline string getFirstName() const
     {
       return fname;
     }
-    string getLastName() const
+    inline string getLastName() const
     {
       return lname;
     }
-    int getID() const
+    inline int getID() const
     {
       return ID;
     }
-    int getAge() const
+    inline int getAge() const
     {
       return age;
     }
-    char getSex() const
+    inline char getSex() const
     {
       return sex;
     }
-    string get_vaccination_status() const
+    inline string get_vaccination_status() const
     {
       return vaccination_status;
     }
@@ -78,16 +81,17 @@ class Individual
 class Vaccination_Data
 {
   private:
+    int SIZE = 223;
    // queue <Individual> peopleToVaccinate;
     //string *location;
-    string *location = new string[223];
-    string vaccine1[223]; //number of regions are 223
-    string vaccine2[223];
-    string vaccine3[223];
-    string vaccine4[223];
-    string vaccine5[223];
-    string vaccine6[223];
-    string vaccine7[223];
+    string *location = new string[SIZE];
+    string *vaccine1 = new string[SIZE]; //number of regions are 223
+    string *vaccine2 = new string[SIZE];
+    string *vaccine3 = new string[SIZE];
+    string *vaccine4 = new string[SIZE];
+    string *vaccine5 = new string[SIZE];
+    string *vaccine6 = new string[SIZE];
+    string *vaccine7 = new string[SIZE];
     int number_of_people=0;
     static Vaccination_Data *v_data; //initialize outside of class
     deque <Individual> peopleToVaccinate;
@@ -101,11 +105,11 @@ class Vaccination_Data
     
     } 
   
-    int GetNumberOfPeople()
+    inline int GetNumberOfPeople()
     {
       return number_of_people;
     }
-    deque <Individual> GetPeople()
+    inline deque <Individual> GetPeople()
     {
       return peopleToVaccinate;
     }
@@ -160,11 +164,7 @@ class Vaccination_Data
 }
    virtual void print_peoples_info()
     {
-      // cout<<"Name: "<<getFirstName()<<" "<<getLastName()<<endl;
-      // cout<<"ID: "<<getID()<<endl;
-      // cout<<"Age: "<<getAge()<<endl;
-      // cout<<"Sex: "<<getSex()<<endl;
-     
+    
       for (int i=0;i<number_of_people;i++)
       {
         cout<<endl;
@@ -176,8 +176,20 @@ class Vaccination_Data
           cout<<"Vaccinated: "<<peopleToVaccinate[i].vaccination_status<<endl;
           cout<<"Username: "<<peopleToVaccinate[i].username<<endl;
           cout<<"Password: "<<peopleToVaccinate[i].password<<endl;
+          cout<<"Appointment date is scheduled at: November "<<Appointment_scheduling::GetInstance()->GetAppointmentDay()<<", 2021 at "<<Appointment_scheduling::GetInstance()->GetAppointmentTime()<<endl;
       }
         cout<<endl;
+    }
+    ~Vaccination_Data()
+    {
+      delete[] location;
+      delete[] vaccine1;
+      delete[] vaccine2;
+      delete[] vaccine3;
+      delete[] vaccine4;
+      delete[] vaccine5;
+      delete[] vaccine6;
+      delete[] vaccine7;
     }
   friend class ApplicationManager;
 };

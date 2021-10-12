@@ -23,38 +23,8 @@ class ApplicationManager //manages logic of application
    
     bool confirm_username(string login_username)
     { 
-    //  for (int i = Vaccination_Data::GetInstance()->GetNumberOfPeople();i>0;i++)
-    // //  int i = 0;
-    // //  while (i < number_of_people)
-      
-
-    //   {
-
-    //     cout<<people[i].username<<endl;
-    //     do
-    //       {
-    //       if (people[i].username != login_username)
-    //       {
-    //         cout<<Vaccination_Data::GetInstance()->GetNumberOfPeople();
-    //         cout<<people[i].username<<"hehe"<<login_username;
-    //         cout<<"Username does not match, please enter again"<<endl;
-    //         cin>>login_username;
-    //         exists=false;
-          
-    //       }
-    //       }while(people[i].username != login_username);
-    //     } 
-    //     cout<<"hehe"<<endl;
-    //     //username=login_username;
-        
-    //     exists = true;
-
-    //     // cout<<"Please enter your password"<<endl;
-    //     // cin>>password;
-
-    //     // confirm_password(password);
       int i=0;
-      while(i < people.size() )
+      while(i < people.size())
       {
         if (people[i].username != login_username)
         {
@@ -92,47 +62,13 @@ class ApplicationManager //manages logic of application
       exists=true;
       return exists;
     }
-      // int i=0;
-      // if (exists == true)
-      // {
-      // while (i < people.size())
-      // {
-      //   //do
-      //    // {
-      //     if (people[i].password != login_password)
-      //     {
-      //       cout<<login_password<<endl<<endl<<people[i].password;
-      //       cout<<"Password does not match, please enter again"<<endl;
-      //       cin>>login_password;
-      //       exists=false;
-      //       i++;
-      //     }
-      //  } //while(people[i].password != login_password);
-
-        
-        
-       // Display();
-      
+       
 
     void DisplayUserInformation()
   {
       Vaccination_Data::GetInstance()->print_peoples_info();
-
-      for (int i=people.size();i<0;i++)
-      {
-        cout<<people[i].username<<endl;
-        cout<<people[i].password<<endl;
-       }
-      // int i;
-      // i=0;
-      // while(i < people.size() )
-      // {
-      //   cout<<people[i].username<<endl;
-      //   cout<<people[i].password<<endl;
-        
-      //   i++;
-      // }
    }
+
 
 };
 

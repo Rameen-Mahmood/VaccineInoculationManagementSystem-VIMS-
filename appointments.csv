@@ -1,11 +1,11 @@
-AppointmentID,,AppointmentTime1,AppointmentTime2
+AppointmentID,AppointmentDay,AppointmentTime1,AppointmentTime2
 5642903,1,8,9
 5642503,2,9,12
 5642549,3,10,16
-5642828,4,,
+5642828,4,11,14
 5642494,5,12,8
 5626772,6,8,13
-5630279,7,14,9
+5630279,7,14,
 5630575,8,15,10
 5638447,9,16,7
 5629123,10,9,16
@@ -28,4 +28,3 @@ AppointmentID,,AppointmentTime1,AppointmentTime2
 5641781,27,7,8
 5628345,28,12,13
 5628945,29,11,9
-,AppointmentTime1,AppointmentTime2,14

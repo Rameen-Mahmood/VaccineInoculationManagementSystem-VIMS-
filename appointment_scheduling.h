@@ -4,16 +4,21 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+using namespace std;
 
-class Appointment_scheduling : public Individual
+class Appointment_scheduling 
 {
   private:
-
+   
     string preferred_day;
-    string AppointmentID[30]; 
-    string AppointmentDay[30];
-    string AppointmentTime1[30];
-    string AppointmentTime2[30];
+    string *AppointmentID = new string[30];
+    string *AppointmentDay = new string[30];
+    string *AppointmentTime1 = new string[30];
+    string *AppointmentTime2 = new string [30];
+    // string AppointmentID[30]; 
+    // string AppointmentDay[30];
+    // string AppointmentTime1[30];
+    // string AppointmentTime2[30];
   
     static Appointment_scheduling *appts;
    
@@ -31,6 +36,15 @@ class Appointment_scheduling : public Individual
       }
       return appts;
     }
+
+  inline string GetAppointmentDay()
+  {
+    return preferred_day;
+  }
+  inline string GetAppointmentTime()
+  {
+    return preferred_hour;
+  }
 
   void read_appointment_data(string preferred_day)
 {
@@ -74,6 +88,7 @@ class Appointment_scheduling : public Individual
   //Adding the headings in the begining
   write_file << AppointmentID[0]<< "," <<AppointmentDay[0]<<","<<AppointmentTime1[0]<< ","<<AppointmentTime2[0]<<endl;
 
+  cout<<i<<endl;
   for (int y = 1 ; y < i; y++) //Writing the file with the original columns and adding the temperature difference column. Starting with y = 1 as the numerical values start after the headings. 
   {
    
@@ -94,11 +109,18 @@ class Appointment_scheduling : public Individual
     write_file << AppointmentID[y]<< "," <<AppointmentDay[y]<<","<<AppointmentTime1[y]<< ","<<AppointmentTime2[y]<<endl;
   
   }
-
-
   read_file.close(); // close file
   write_file.close();
-}
+  }
+
+  ~Appointment_scheduling()
+  {
+    delete[] AppointmentID;
+    delete[] AppointmentDay;
+    delete[] AppointmentTime1;
+    delete[] AppointmentTime2;
+  }  
+  friend class Vaccination_Data;
 };
 Appointment_scheduling *Appointment_scheduling :: appts = NULL; 
 

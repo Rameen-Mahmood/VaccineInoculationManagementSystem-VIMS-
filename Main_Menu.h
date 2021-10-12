@@ -35,6 +35,7 @@ class Present_Menu
   string allergies;
   string preferred_day;
   bool eligible=false;
+  bool registered=false;
   
 
   public:
@@ -65,27 +66,28 @@ class Present_Menu
   {
     eligible=false;
     Third_Selection();
-    
+    registered=true;
   }
   else if ((selection == 3) && (eligible == false))
   {
     cout<<"You are not eligible to register for the vaccine, first verify your eligibility!"<<endl<<endl;
     Second_Selection();
+
   }
-  else if ((selection == 4) && (eligible == true))
+  else if ((selection == 4) && (registered == true))
   {
     Fourth_Selection();
   }
-  else if ((selection == 4) && (eligible == false))
+  else if ((selection == 4) && (registered == false))
   {
-    cout<<"You are not eligible for the vaccine, hence you cannot schedule an appointment for the vaccine!"<<endl<<endl;
-    Second_Selection();
+    cout<<"You are not registered for the vaccine, hence you cannot schedule an appointment for the vaccine!"<<endl<<endl;
+    Third_Selection();
   }
-  else if ((selection == 5) && (eligible == true))
+  else if ((selection == 5) && (registered == true))
   {
     Fifth_Selection();
   }
-   else if ((selection == 5) && (eligible == false))
+   else if ((selection == 5) && (registered == false))
   {
     cout<<"You are not eligible for the vaccine, hence no user record found!"<<endl<<endl;
     Second_Selection();
@@ -152,7 +154,8 @@ void Second_Selection()
     Vaccination_Data::GetInstance()->addIndividual(individual);
     
     Vaccination_Data::GetInstance()->print_peoples_info();
-  
+
+    registered=true;
     DisplayMenu();
   
   }
