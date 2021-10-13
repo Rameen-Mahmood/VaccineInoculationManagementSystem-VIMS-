@@ -15,6 +15,7 @@ class ApplicationManager //manages the application of the user — confirms the 
     string username;
     Individual individual;
     bool exists;
+    int index;
     
     deque <Individual> people = Vaccination_Data::GetInstance()->GetPeople(); //using the getter function in Vaccination_Data class, we are getting the deque from the Vaccination_Data class and storing it into the deque "people"
   
@@ -24,46 +25,69 @@ class ApplicationManager //manages the application of the user — confirms the 
     bool confirm_username(string login_username) //taking the user entered username and verifiying if it matches the username the user previously set
     { 
       int i=0;
-      while(i < people.size()) //iterates until the size of the deque
+      exists=false;
+
+      //i iterates through the entire loop and then the if statement checks at each i whether the login_username is equal or not. Once it reaches the end of the deque, it stops and returns false
+      while (exists == false)
       {
-        while (people[i].username != login_username) //if they are not equal
+        while (i<people.size())
         {
-          cout<<"Username does not match, please enter again"<<endl;
-          cin>>login_username; //keeps asking for the username until it is correct
-      
-          exists=false; //sets exists (which indicates the users existance of application) to false
+          if (people[i].username == login_username)
+          {
+            index = i; //the position where the Individual lies
+            exists = true;
+            break;
+          }
+          else
+          {
+            i++;
+          }
         }
-        
-        exists = true; //if they are equal, the user account exists
+        if (i == people.size()) //once end of deque is reached
+          {
+            cout<<"The username you have entered is incorrect!"<<endl;
+            exists=false;
+            break;
+          }
       
-        i++; //increment i 
       }
      
       return exists;
     }
 
-    bool confirm_password(string login_password) //taking the user entered password and verifiying if it matches the password the user previously set
+    bool confirm_password(string login_password) //function returns true if password matches, otherwise false
     {
       int i=0;
-      while(i < people.size() )
+      exists=false;
+
+      while (exists == false) 
       {
-        while (people[i].password != login_password) //if they are not equal
-        { 
-          cout<<"Password does not match, please enter again"<<endl;
-          cin>>login_password; //keeps asking for the password until it is correct
-      
-          exists=false;//sets exists (which indicates the users existance of application) to false
+        while (i<people.size())
+        {
+          if (people[i].password == login_password) //checks if equal
+          {
+            exists = true; 
+            break;
+          }
+          else
+          {
+            i++; //increments i
+          }
         }
-        
-        i++; //increment i 
+        if (i == people.size())
+          {
+            cout<<"The password you have entered is incorrect!"<<endl;
+            exists=false;
+            break;
+          }
+      
       }
-      exists=true;
       return exists;
     }
 
     void DisplayUserInformation() //Displays user information — this function allows the transfer of updated appointment booking information into the print_peoples_info() function in Vaccination_Data class
     {
-      Vaccination_Data::GetInstance()->print_peoples_info();
+      Vaccination_Data::GetInstance()->print_peoples_info(index); //we pass index (the position of the particular Individual object we are interested in) in the print_peoples_info function so that it displays information of that Individual object alone
     }
 
 

@@ -112,7 +112,7 @@ class Appointment_scheduling //Singleton class to read the appointment schedule 
       confirmed_time=AppointmentTime2[y];
       AppointmentTime2[y]="";
       AppointmentTime2[y]="";
-      cout<<"Your appointment for November " <<AppointmentDay[y]<<", 2021 at " << confirmed_time <<"hrs "<<"is now confirmed."<<endl;
+      cout<<"Your appointment for November " <<AppointmentDay[y]<<", 2021 at " << confirmed_time <<":00 hrs "<<"is now confirmed."<<endl;
     }
     
     //write the file with updated contents

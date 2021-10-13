@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <deque>
+#include <iomanip>
 #include "appointment_scheduling.h"
 
 class Individual //stores attributes of users registering for the vaccine
@@ -160,12 +161,10 @@ class Vaccination_Data //Singleton class which reads vaccination data from file,
   read_file.close(); // close file
   }
 
-  virtual void print_peoples_info() //Displaying user information
+  virtual void print_peoples_info(int i) //Displaying user information
   {
-    for (int i=0;i<number_of_people;i++)
-    {
-    cout<<endl;
-    cout<<"Individual " << i << endl;
+    cout<<setw(35)<<"~USER INFORMATION~"<<endl;
+    cout<<"Individual #" << i << endl;
     cout<<"Name: "<<peopleToVaccinate[i].fname<<" "<<peopleToVaccinate[i].lname<<endl;
     cout<<"ID: "<<peopleToVaccinate[i].ID<<endl;
     cout<<"Age: "<<peopleToVaccinate[i].age<<endl;
@@ -182,10 +181,9 @@ class Vaccination_Data //Singleton class which reads vaccination data from file,
     }
     else if (Appointment_scheduling::GetInstance()->GetAppointmentID() == "") //if user has not booked the appointment
     {
-      cout<<"Appointment not scheduled as of yet. "<<endl;
+      cout<<"Appointment not scheduled as of yet. "<<endl<<endl;
     }
-    }
-      cout<<endl;
+  
   }
     ~Vaccination_Data() //deconstructor
     {
