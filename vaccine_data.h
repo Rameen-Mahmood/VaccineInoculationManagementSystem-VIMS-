@@ -22,16 +22,6 @@ class Individual //stores attributes of users registering for the vaccine
     int AppointmentTime;
     int AppointmentDay;
   
-    //getter functions 
-    string getUsername()
-    {
-      return username;
-    }
-    string getPassword()
-    {
-      return password;
-    }
-  
   public:
     Individual(){}; //default constructor
     Individual(string fname, string lname, int ID, int age, char sex, string username, string password, string vaccination_status) //parametrized constructor
@@ -161,7 +151,7 @@ class Vaccination_Data //Singleton class which reads vaccination data from file,
   read_file.close(); // close file
   }
 
-  virtual void print_peoples_info(int i) //Displaying user information
+  void print_peoples_info(int i) //Displaying user information
   {
     cout<<setw(35)<<"~USER INFORMATION~"<<endl;
     cout<<"Individual #" << i << endl;
