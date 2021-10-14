@@ -1,7 +1,7 @@
 ###### Vaccine Inoculation Management System (VIMS)
 
 
-_Problem Statement_
+###Problem Statement###
 
 My project aims to streamline the vaccination process for individuals where it is difficult to impossible to register for a vaccine. The inspiration for my project is based on the situation in my home country Pakistan, where there is little to no organization of vaccine administration. There are not only multiple delays in the system, but without an online healthcare system, there is no database of user registration, which results in overcrowding in vaccination drives which results in spikes of Covid-19. My project is a step in order to tackle this problem. 
 
