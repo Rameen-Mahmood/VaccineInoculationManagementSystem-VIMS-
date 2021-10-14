@@ -23,5 +23,5 @@ My project offers the following functionalities:
 
 **Guidelines for use:**
 
-For selection 1, please make sure to enter the name of the region correctly —to find the list of country names in the csv file, you may download it from here. 
-For selection 4, before running the code, make sure that there is no end of file character / newline character in the appointments.csv file. The original copy of the file is within the project file for reference — it is labeled as “appointments (copy).csv”
+- For selection 1, please make sure to enter the name of the region correctly —to find the list of country names in the csv file, you may download it from here. 
+- For selection 4, before running the code, make sure that there is no end of file character / newline character in the appointments.csv file. The original copy of the file is within the project file for reference — it is labeled as “appointments (copy).csv”
